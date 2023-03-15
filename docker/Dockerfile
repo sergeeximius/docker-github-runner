@@ -1,10 +1,10 @@
-ARG FROM=debian:buster-slim
+ARG FROM=ubuntu:latest
 FROM ${FROM}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG GIT_VERSION="2.26.2"
+ARG GIT_VERSION="2.39.2"
 ARG GH_RUNNER_VERSION
-ARG DOCKER_COMPOSE_VERSION="1.27.4"
+ARG DOCKER_COMPOSE_VERSION="2.16.0"
 
 ENV RUNNER_NAME=""
 ENV RUNNER_WORK_DIRECTORY="_work"
@@ -41,9 +41,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
         build-essential \
         zlib1g-dev \
         gettext \
-        liblttng-ust0 \
+        liblttng-ust1 \
         libcurl4-openssl-dev \
-        openssh-client && \
+        openssh-client \
+	    python3.11 \
+	    ansible \
+        libpq-dev && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
